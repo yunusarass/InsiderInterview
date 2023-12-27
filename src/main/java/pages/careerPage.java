@@ -1,13 +1,17 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import util.DriverFactory;
 import util.ElementHelper;
 
-public class careerPage extends DriverFactory {
+public class careerPage {
 
-    ElementHelper elementHelper = new ElementHelper();
+    ElementHelper elementHelper;
+
+    public careerPage(WebDriver driver) {
+        elementHelper = new ElementHelper(driver);
+    }
 
 
     private By findYourDreamJobButton = By.cssSelector("#page-head > div > div > div.col-12.col-lg-6.order-2.order-lg-1 > div > div > a");
@@ -17,25 +21,18 @@ public class careerPage extends DriverFactory {
 
 
 
-    public void checkFindYourDreamJobButton(){
-        elementHelper.checkElementVisible(findYourDreamJobButton);
-    }
-    // "findYourDreamJobButton" öğesinin görünür olduğunu kontrol eden metod.
+    public void checkFindYourDreamJobButton(){elementHelper.checkElementVisible(findYourDreamJobButton);}
     public void checkSeeAllTeamsButton(){
         elementHelper.checkElementVisible(seeAllTeamsButton);
     }
-    // "seeAllTeamsButton" öğesinin görünür olduğunu kontrol eden metod.
     public void checkOurLocationsTitle(){
         elementHelper.checkElementVisible(ourLocationsTitle);
     }
-    // "ourLocationsTitle" öğesinin görünür olduğunu kontrol eden metod.
     public void checkTextOurLocationsTitle(){
         elementHelper.checkElementText(ourLocationsTitle,"Our Locations");
     }
-    // "ourLocationsTitle" öğesinin metin içeriğini kontrol eden metod.
     public void checkLifeAtInsider(){
         Assert.assertEquals(elementHelper.elementGetText(lifeAtInsider),"Life at Insider");
-        // "lifeAtInsider" öğesinin metin içeriğini "Life at Insider" ile karşılaştıran metod.
     }
 
 
